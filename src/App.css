@@ -1,0 +1,419 @@
+* {box-sizing: border-box;}
+body {font-family: Verdana, sans-serif;}
+.mySlides {display: none;}
+img {vertical-align: middle;}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1400px;
+  height: 50%;
+  position: relative;
+  margin: auto;
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+.container {
+            margin:auto;
+            width: 90%;
+            border-radius: 10px;
+            background-color: lightgray;
+            color:black;
+            padding: 40px;
+            margin-bottom: 100px;
+        }
+/* The dots/bullets/indicators */
+.dot {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .text {font-size: 11px}
+}
+.indexbody{
+    margin: 0px;
+    padding: 0px;
+    background-color:black;
+}
+
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:18px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;color: black;}
+.tg th{font-family:Arial, sans-serif;font-size:22px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;color: black;}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-0pky{text-align:left;vertical-align:top}
+
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+    margin: auto;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+div.points{
+    font-size:1.5vw;
+    }
+h2{
+    color:red;
+    }
+
+
+#raitlogo {
+    float: left;
+    margin-right: 50px;
+    margin-top:0px;
+}
+#title{
+    color:white;
+    font-size: 5vw;
+    margin-bottom: 0px;
+    margin-top:15px;
+    text-align: center;
+}
+header#indexheader{
+    background-color: grey;
+}
+
+div#logodiv{
+    background-color: black;
+    margin-bottom: 0px;
+}
+
+ul#ulindex {
+    list-style-type: none;
+    margin: 0px;
+    overflow: hidden;
+    text-align: center;
+    font-size: 1.8vw;
+    font-family:Comic Sans MS;
+
+}
+
+li.liindex {
+    display:inline-block;
+    cursor: pointer;
+    
+}
+
+li.liindex div {
+
+    color: black;
+    text-align: center;
+    margin-left:30px;
+    padding: 10px 10px;
+    text-decoration: none;
+}
+
+li.liindex div:hover {
+    background-color: white;
+    transition: 0.4s;
+}
+.active{
+    background-color: white;
+}
+hr{
+  margin:0px;
+  border:1px solid black;
+}
+.margin_top_30{
+  margin-top: 30px;
+}
+.font_family_poppins{
+  font-family: Poppins-Regular,sans-serif
+}
+.padding_bottom_20{
+  padding-bottom: 20px;
+}
+
+* {
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+a.alink {
+  font-family: Poppins-Regular,sans-serif;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #666666;
+  margin: 0px;
+  text-decoration: none;
+      }
+
+
+a:hover {
+  text-decoration: none;
+  color: black;
+}
+
+input {
+  outline: none;
+  border: none;
+}
+
+
+button {
+  outline: none;
+  border: none;
+  background: transparent;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.txt1 {
+  font-family: Poppins-Regular,sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #666666;
+}
+
+.txt2 {
+  font-family: Poppins-Regular,sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333333;
+  text-transform: uppercase;
+}
+
+.bg1 {background-color: #3b5998;text-decoration: none;}
+.bg2 {background-color: #1da1f2;text-decoration: none;}
+.bg3 {background-color: #ea4335;text-decoration: none;}
+
+
+.container-login {
+  margin-top: 20px;
+  min-height: 70vh;
+  width: 40%;
+}
+.wrap-login100 {
+  background: #fff;
+  border-radius: 10px;
+  overflow: visible;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+
+}
+
+
+.logintitle {
+  display: block;
+  font-family: Poppins-Bold,sans-serif;
+  font-size: 39px;
+  color: #333333;
+  line-height: 1.2;
+  text-align: center;
+}
+.inputbox {
+  width: 100%;
+  position: relative;
+  border-bottom: 2px solid #d9d9d9;
+}
+
+.inputlabel {
+  font-family: Poppins-Regular,sans-serif;
+  font-size: 16px;
+  color: #333333;
+  line-height: 1.5;
+  padding-left: 7px;
+}
+
+.inputarea {
+  font-family: Poppins-Regular,sans-serif;
+  font-size: 16px;
+  color: #333333;
+  line-height: 1.2;
+
+  display: block;
+  width: 100%;
+  height: 55px;
+  background: transparent;
+  padding: 0 7px 0 43px;
+}
+.containerform {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.loginbtn:hover{
+      background-color:black;
+
+}
+.loginbtn {
+  background-color:gray;
+  width: 30%;
+  display: block;
+  position: relative;
+  z-index: 1;
+  border-radius: 15px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.loginbgbtn {
+  position: absolute;
+  z-index: -1;
+  width: 300%;
+  height: 100%;
+  background: #a64bf4;
+  top: 0;
+  left: -100%;
+  transition: all 0.4s;
+}
+
+.loginbtntxt {
+  font-family: Poppins-Medium,sans-serif;
+  font-size: 16px;
+  color: #fff;
+  line-height: 1.2;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  width: 100%;
+  height: 50px;
+}
+
+
+
+
+
+
+
+.txt1 ,txt2{text-align: center;}
+.text-right {text-align: right;}
+
+
+
+
+.flex-c-m {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.flex-col-c {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.icon {
+  color: black;
+  min-width: 50px;
+  position: absolute;
+  margin-top: 20px;
+  margin-left: 18px;
+}
+.incon{
+  width: 100%;
+  margin-bottom: 0px;
+}
+
+.limiter{
+display: flex;
+justify-content: center;
+align-items: center;
+width: 100%;
+}
+
+* {box-sizing: border-box;}
+
+#fname, #number, #email, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.container {
+    border-radius: 10px;
+    background-color: #f2f4f9;
+    padding: 40px;
+    margin-bottom: 100px;
+}
+section{
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.contact_heading{
+  font-size: 2vw;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  color: white;
+}
