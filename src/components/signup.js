@@ -70,7 +70,7 @@ function SignupPage() {
                             <span class="inputlabel">Affilation address</span>
                             <div class="incon">
                                 <i class="fa fa-user icon"></i>
-                                <input class="inputarea" type="email" onChange={(e) => {setAddress(e.target.value)}} name="email" placeholder="Type your email" />
+                                <input class="inputarea" type="text" onChange={(e) => {setAddress(e.target.value)}} name="email" placeholder="Type your email" />
                             </div>
                         </div>
                         <br />
@@ -86,7 +86,7 @@ function SignupPage() {
                             <span class="inputlabel">Contact no.</span>
                             <div class="incon">
                                 <i class="fa fa-phone icon"></i>
-                                <input class="inputarea" type="email" onChange={(e) => {setContact(e.target.value)}} name="email" placeholder="Type your email" />
+                                <input class="inputarea" type="number" onChange={(e) => {setContact(e.target.value)}} name="contact" placeholder="Type your email" />
                             </div>
                         </div>
                         <br />
@@ -94,7 +94,7 @@ function SignupPage() {
                             <span class="inputlabel">Website</span>
                             <div class="incon">
                                 <i class="fa fa-link icon"></i>
-                                <input class="inputarea" type="email" onChange={(e) => {setLink(e.target.value)}} name="email" placeholder="Type your email" />
+                                <input class="inputarea" type="text" onChange={(e) => {setLink(e.target.value)}} name="website" placeholder="Type your email" />
                             </div>
                         </div>
                         <br />
@@ -102,7 +102,7 @@ function SignupPage() {
                             <span class="inputlabel">User Name</span>
                             <div class="incon">
                                 <i class="fa fa-user icon"></i>
-                                <input class="inputarea" type="email" onChange={(e) => {setUname(e.target.value)}} name="email" placeholder="Type your email" />
+                                <input class="inputarea" type="text" onChange={(e) => {setUname(e.target.value)}} name="uname" placeholder="Type your email" />
                             </div>
                         </div>
                         <br />
