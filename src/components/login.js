@@ -4,21 +4,22 @@ import { useNavigate, Link } from "react-router-dom"
 
 function LoginPage() {
     const history=useNavigate();
-    const [email,setEmail]=useState('')
+    const [uname,setUname]=useState('')
     const [password,setPassword]=useState('')
+    const [role,setRole]=useState('user')
 
     async function submit(e){
         e.preventDefault();
 
         try{
             await axios.post("http://localhost:8000",{
-                email,password
+                role,uname,password
             })
             .then(res=>{
-                if(res.data==="exist"){
-                   history("/home",{state:{id:email}}) 
+                if(res.data==="exists"){
+                   history("/home",{state:{id:uname}}) 
                 }
-                else if(res.data==="notexist"){
+                else {
                    alert("User has not signed up")
                 }
             })
@@ -42,15 +43,15 @@ function LoginPage() {
                         </span>
                         <br />
                         <div id="radio" class="padding_bottom_20">
-                            <input type="radio" name="source" value="student" id="student" checked />User
-                            <input type="radio" name="source" value="organiser" id="organiser" />Organiser
-                            <input type="radio" name="source" value="admin" id="admin" />Administrator
+                            <input type="radio" onClick={(e) => {setRole('user')}} name="source" value="student" id="student" checked />User
+                            <input type="radio" onClick={(e) => {setRole('organiser')}} name="source" value="organiser" id="organiser" />Organiser
+                            <input type="radio" onClick={(e) => {setRole('admin')}} name="source" value="admin" id="admin" />Administrator
                         </div>
                         <div class="inputbox">
-                            <span class="inputlabel">Email</span>
+                            <span class="inputlabel">Username</span>
                             <div class="incon">
                                 <i class="fa fa-user icon"></i>
-                                <input class="inputarea" onChange={(e) => {setEmail(e.target.value)}} type="email" name="email" placeholder="Type your email" />
+                                <input class="inputarea" onChange={(e) => {setUname(e.target.value)}} type="text" name="uname" placeholder="Enter your username" />
                             </div>
                         </div>
                         <br />
@@ -58,7 +59,7 @@ function LoginPage() {
                             <span class="inputlabel">Password</span>
                             <div class="incon">
                                 <i class="fa fa-key icon"></i>
-                                <input class="inputarea" onChange={(e) => {setPassword(e.target.value)}}  type="password" name="password" placeholder="Type your password" />
+                                <input class="inputarea" onChange={(e) => {setPassword(e.target.value)}}  type="password" name="password" placeholder="Enter your password" />
                             </div>
                         </div>
                         <br />

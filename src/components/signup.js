@@ -26,8 +26,7 @@ function SignupPage() {
                         alert("User already exist")
                     }
                     else if (res.data === "notexist") {
-                        // history("/home", { state: { id: email } })
-                        alert("User registered")
+                        // history("/home", { state: { id: username } })
                     }
                 })
                 .catch(e => {

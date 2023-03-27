@@ -1,5 +1,5 @@
 const express = require("express")
-const collection = require("./server")
+const { userCollection, orgCollection, publicationCollection } = require("./server")
 const cors = require("cors")
 const app = express()
 app.use(express.json())
@@ -13,13 +13,21 @@ app.get("/",cors(),(req,res)=>{
 })
 
 app.post("/",async(req,res)=>{
-    const{email,password}=req.body
+    const{role,uname,password}=req.body
+    let check = null
 
     try{
-        const check=await collection.findOne({email:email})
+        if (role === 'user') {
+            check=await userCollection.findOne({username:uname})
+            console.log(check)
+        } else {
+            check=await orgCollection.findOne({username:uname})
+            console.log('hereerfgh')
+        }
+        console.log(check);
 
-        if(check){
-            res.json("Exists")
+        if(check && check.password === password){
+            res.json("exists")
         }
         else{
             res.json("Does not exist")
@@ -47,21 +55,83 @@ app.post("/signup",async(req,res)=>{
     }
 
     try{
-        const check = await collection.findOne({email:email})
-        const check2 = await collection.findOne({username:username})
+        const check = await userCollection.findOne({email:email})
+        const check2 = await userCollection.findOne({username:username})
+        console.log(check,check2);
 
         if(check || check2){
             res.json("exist")
         }
         else{
             res.json("notexist")
-            await collection.insertMany([data])
+            await userCollection.insertMany([data])
         }
     }
     catch{
         res.json("Does not exist")
 
     }
+})
+
+app.post("/changeStatus",async(req,res)=>{
+    const{uname,decision}=req.body
+
+    //Change status of that uname True/False
+    const user = await userCollection.findOneAndUpdate(
+        { username: uname },
+        { status: decision },
+        { new: true }
+    );
+
+})
+
+app.post("/savePaper",async(req,res)=>{
+    const{user, title, authors, keywords, abstract, pdf, draft}=req.body
+    const data = {
+        user:user,
+        title:title,
+        authors:authors,
+        keywords:keywords,
+        abstract:abstract,
+        pdf:pdf,
+        draft:draft
+    }
+
+    try{
+        const check = await publicationCollection.findOne({user:user})
+
+        if(check && check.title === title){
+            if (check.draft === true) {
+                // update with new data
+            } else {
+                res.json("exist")
+            }
+        } else{
+            res.json("notexist")
+            await publicationCollection.insertMany([data])
+        }
+    }
+    catch{
+        res.json("Does not exist")
+
+    }    
+
+})
+
+app.post("/userDetails",async(req,res)=>{
+    const{uname}=req.body
+    console.log(uname)
+
+    const check=await userCollection.findOne({username:uname})
+    console.log(check);
+
+    if (check) {
+        res.json(check)
+    } else {
+        res.json('User does not exist')
+    }
+    
+
 })
 
 app.listen(8000,()=>{
