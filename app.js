@@ -19,12 +19,9 @@ app.post("/",async(req,res)=>{
     try{
         if (role === 'user') {
             check=await userCollection.findOne({username:uname})
-            console.log(check)
         } else {
             check=await orgCollection.findOne({username:uname})
-            console.log('hereerfgh')
         }
-        console.log(check);
 
         if(check && check.password === password){
             res.json("exists")
@@ -51,7 +48,7 @@ app.post("/signup",async(req,res)=>{
         website:website,
         username:username,
         password:password,
-        status:false
+        status:'null'
     }
 
     try{
@@ -120,10 +117,8 @@ app.post("/savePaper",async(req,res)=>{
 
 app.post("/userDetails",async(req,res)=>{
     const{uname}=req.body
-    console.log(uname)
 
     const check=await userCollection.findOne({username:uname})
-    console.log(check);
 
     if (check) {
         res.json(check)

@@ -17,10 +17,11 @@ function LoginPage() {
             })
             .then(res=>{
                 if(res.data==="exists"){
+                    localStorage.setItem('user',uname)
                    history("/home",{state:{name:uname,role:role}}) 
                 }
                 else {
-                   alert("User has not signed up")
+                   alert("Invalid Credentials")
                 }
             })
             .catch(e=>{

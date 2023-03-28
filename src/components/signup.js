@@ -16,7 +16,38 @@ function SignupPage() {
 
     async function submit(e) {
         e.preventDefault();
-
+        if (!name.trim()) {
+            alert('Please enter your name');
+            return;
+        }
+        if (!affiliation.trim()) {
+            alert('Please enter your affiliation');
+            return;
+        }
+        if (!affiliation_address.trim()) {
+            alert('Please enter your affiliation address');
+            return;
+        }
+        if (!email.trim()) {
+            alert('Please enter your email');
+            return;
+        }
+        if (!contact_no.trim()) {
+            alert('Please enter your contact number');
+            return;
+        }
+        if (!website.trim()) {
+            alert('Please enter your website link');
+            return;
+        }
+        if (!username.trim()) {
+            alert('Please enter a username');
+            return;
+        }
+        if (!password.trim()) {
+            alert('Please enter a password');
+            return;
+        }
         try {
             await axios.post("http://localhost:8000/signup", {
                 name, affiliation, affiliation_address, email, contact_no, website, username, password
@@ -26,7 +57,7 @@ function SignupPage() {
                         alert("User already exist")
                     }
                     else if (res.data === "notexist") {
-                        history("/home", { state: { name: username, role:'user' } })
+                        history("/home", { state: { name: username, role: 'user' } })
                     }
                 })
                 .catch(e => {
@@ -53,7 +84,7 @@ function SignupPage() {
                             <span class="inputlabel">Name</span>
                             <div class="incon">
                                 <i class="fa fa-user icon"></i>
-                                <input class="inputarea" type="text" onChange={(e) => {setName(e.target.value)}} name="name" placeholder="Type your name" />
+                                <input class="inputarea" type="text" onChange={(e) => { setName(e.target.value) }} name="name" placeholder="Type your name" />
                             </div>
                         </div>
                         <br />
@@ -61,7 +92,7 @@ function SignupPage() {
                             <span class="inputlabel">Affilation</span>
                             <div class="incon">
                                 <i class="fa fa-user icon"></i>
-                                <input class="inputarea" type="text" onChange={(e) => {setAffiliation(e.target.value)}} name="affilation" placeholder="Type your affilation" />
+                                <input class="inputarea" type="text" onChange={(e) => { setAffiliation(e.target.value) }} name="affilation" placeholder="Type your affilation" />
                             </div>
                         </div>
                         <br />
@@ -69,7 +100,7 @@ function SignupPage() {
                             <span class="inputlabel">Affilation address</span>
                             <div class="incon">
                                 <i class="fa fa-user icon"></i>
-                                <input class="inputarea" type="text" onChange={(e) => {setAddress(e.target.value)}} name="email" placeholder="Type your email" />
+                                <input class="inputarea" type="text" onChange={(e) => { setAddress(e.target.value) }} name="email" placeholder="Type your affilation add" />
                             </div>
                         </div>
                         <br />
@@ -77,7 +108,7 @@ function SignupPage() {
                             <span class="inputlabel">Email</span>
                             <div class="incon">
                                 <i class="fa fa-envelope icon"></i>
-                                <input class="inputarea" type="email" onChange={(e) => {setEmail(e.target.value)}} name="email" placeholder="Type your email" />
+                                <input class="inputarea" type="email" onChange={(e) => { setEmail(e.target.value) }} name="email" placeholder="Type your email" />
                             </div>
                         </div>
                         <br />
@@ -85,7 +116,7 @@ function SignupPage() {
                             <span class="inputlabel">Contact no.</span>
                             <div class="incon">
                                 <i class="fa fa-phone icon"></i>
-                                <input class="inputarea" type="number" onChange={(e) => {setContact(e.target.value)}} name="contact" placeholder="Type your email" />
+                                <input class="inputarea" type="number" onChange={(e) => { setContact(e.target.value) }} name="contact" placeholder="Type your contact" />
                             </div>
                         </div>
                         <br />
@@ -93,7 +124,7 @@ function SignupPage() {
                             <span class="inputlabel">Website</span>
                             <div class="incon">
                                 <i class="fa fa-link icon"></i>
-                                <input class="inputarea" type="text" onChange={(e) => {setLink(e.target.value)}} name="website" placeholder="Type your email" />
+                                <input class="inputarea" type="text" onChange={(e) => { setLink(e.target.value) }} name="website" placeholder="Type your website" />
                             </div>
                         </div>
                         <br />
@@ -101,7 +132,7 @@ function SignupPage() {
                             <span class="inputlabel">User Name</span>
                             <div class="incon">
                                 <i class="fa fa-user icon"></i>
-                                <input class="inputarea" type="text" onChange={(e) => {setUname(e.target.value)}} name="uname" placeholder="Type your email" />
+                                <input class="inputarea" type="text" onChange={(e) => { setUname(e.target.value) }} name="uname" placeholder="Type your user name" />
                             </div>
                         </div>
                         <br />
@@ -109,7 +140,7 @@ function SignupPage() {
                             <span class="inputlabel">Password</span>
                             <div class="incon">
                                 <i class="fa fa-key icon"></i>
-                                <input class="inputarea" type="password" onChange={(e) => {setPassword(e.target.value)}} name="password" placeholder="Type your password" />
+                                <input class="inputarea" type="password" onChange={(e) => { setPassword(e.target.value) }} name="password" placeholder="Type your password" />
                             </div>
                         </div>
                         <br />

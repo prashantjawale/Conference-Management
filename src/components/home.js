@@ -25,6 +25,14 @@ function HomePage() {
             </div>
         ))
     }
+    function showExitPage() {
+        //TODO: Insert UI of home page consisting upload paper/ Save paper
+        setHome((
+            <div>
+                <h1>Hello {uname}, your account has been rejected by the organiser. Try creating a new account with correct details.</h1>
+            </div>
+        ))
+    }
 
 
     useEffect(() => {
@@ -33,10 +41,12 @@ function HomePage() {
                 uname
             })
                 .then(res => {
-                    if (res.data && res.data.status) {
+                    if (res.data && res.data.status === 'true') {
                         showUserHomePage()
-                    } else {
+                    } else if (res.data && res.data.status === 'null') {
                         showWaitingPage()
+                    } else if (res.data && res.data.status === 'false') {
+                        showExitPage()
                     }
                 })
                 .catch(e => {
