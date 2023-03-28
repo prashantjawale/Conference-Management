@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import axios from "axios"
 import { useNavigate, Link } from "react-router-dom"
 
@@ -17,7 +17,7 @@ function LoginPage() {
             })
             .then(res=>{
                 if(res.data==="exists"){
-                   history("/home",{state:{id:uname}}) 
+                   history("/home",{state:{name:uname,role:role}}) 
                 }
                 else {
                    alert("User has not signed up")
