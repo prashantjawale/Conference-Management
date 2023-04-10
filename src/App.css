@@ -2,13 +2,14 @@
 	box-sizing: border-box;
 }
 
-body {
-	font-family: Verdana, sans-serif;
+.loginbg {
+	/* font-family: Verdana, sans-serif; */
 	background-image: url('./img/research-publication.jpg');
 	background-size: cover;
 	background-position: center center;
 	background-attachment: fixed;
 }
+
 /* Caption text */
 .text {
 	color: #f2f2f2;
@@ -272,4 +273,87 @@ input[type=submit] {
 
 input[type=submit]:hover {
 	background-color: #45a049;
+}
+
+.waitingpage {
+	background-image: url("./img/cat.gif");
+	background-size: cover;
+	background-size: auto;
+	background-repeat: no-repeat;
+	background-position: center 35px;
+	font-family: 'Roboto', sans-serif;
+	color: black;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+}
+
+.rejectedpage {
+	background-image: url('./img/profile_rejected.png');
+	background-size: cover;
+	background-size: auto;
+	background-repeat: no-repeat;
+	background-position:center 35px;
+	font-family: 'Roboto', sans-serif;
+	color: black;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+  }
+
+nav {
+	background-color: #ffcc84;
+	height: 75px;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+
+nav ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 100%;
+}
+
+nav li {
+	margin: 0;
+	padding: 0;
+}
+
+nav a {
+	display: block;
+	padding: 0 20px;
+	color: black;
+	text-decoration: none;
+	font-size: 18px;
+}
+
+nav a:hover {
+	background-color: #ffcc84;
+	cursor: pointer;
+	font-weight: 600;
+}
+
+.container {
+	max-width: 1000px;
+	margin-top: 100px;
+	margin: 70px auto 0;
+	padding: 50px 20px;
+}
+
+h1 {
+	font-size: 36px;
+	margin-top: 200px;
+	margin-bottom: 20px;
+}
+
+p {
+	font-size: 18px;
+	margin-bottom: 40px;
 }
