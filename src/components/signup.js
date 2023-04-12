@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import axios from "axios"
 import { useNavigate, Link } from "react-router-dom"
 
@@ -13,6 +13,18 @@ function SignupPage() {
     const [website, setLink] = useState('')
     const [username, setUname] = useState('')
     const [password, setPassword] = useState('')
+
+    useEffect(() => {
+        if (localStorage.getItem('user')) {
+            history("/home", { state: { name: localStorage.getItem('user') } })
+            return;
+        }
+        if (localStorage.getItem('admin')) {
+            history("/adminhome", { state: { name: localStorage.getItem('user') } })
+            return;
+        }
+
+    })
 
     async function submit(e) {
         e.preventDefault();

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
-import { useLocation } from "react-router-dom"
+import { useNavigate, Link, useLocation } from "react-router-dom"
 
 function HomePage() {
     const location = useLocation()
+    const history = useNavigate();
     let uname = ''
     if (location.state && location.state.name) {
         uname = location.state.name
@@ -43,19 +44,24 @@ function HomePage() {
         }
     }
 
+    function logout() {
+        localStorage.removeItem('user');
+        history("/login")
+    }
+
     function showWaitingPage() {
         //TODO: Insert UI of Waiting home page
         setHome((
             <div className="waitingpage">
-                <nav>
+                <div className="homenav">
                     <ul>
                         <li><a href="#">HOME</a></li>
-                        <li><a href="#">LOGOUT</a></li>
+                        <li><a onClick={logout}>LOGOUT</a></li>
                     </ul>
-                </nav>
-                <div class="container">
-                    <h1>Your user profile has not yet been Approved !</h1>
-                    <p>We're sorry, but your user profile has not yet been approved. Please contact the organizer for more information.</p>
+                </div>
+                <div class="waitcontainer">
+                    <h1 style={{ fontSize: "36px", marginTop: "200px", marginBottom: "20px" }}>Your user profile has not yet been Approved !</h1>
+                    <p style={{ fontSize: "18px", marginBottom: "40px"}}>We're sorry, but your user profile has not yet been approved. Please contact the organizer for more information.</p>
                 </div>
             </div>
         ))
@@ -65,15 +71,15 @@ function HomePage() {
         //TODO: Insert UI of home page consisting upload paper/ Save paper
         setHome((
             <div className="rejectedpage">
-                <nav>
+                <nav className="homenav">
                     <ul>
                         <li><a href="#">HOME</a></li>
-                        <li><a href="#">LOGOUT</a></li>
+                        <li><a onClick={logout}>LOGOUT</a></li>
                     </ul>
                 </nav>
-                <div class="container">
-                    <h1>Your user profile has been rejected by the organizer !</h1>
-                    <p>Please contact the organizer for further information.</p>
+                <div class="waitcontainer">
+                    <h1 style={{ fontSize: "36px", marginTop: "200px", marginBottom: "20px" }}>Your user profile has been rejected by the organizer !</h1>
+                    <p style={{ fontSize: "18px", marginBottom: "40px"}}>Please contact the organizer for further information.</p>
                 </div>
 
             </div>
@@ -87,7 +93,7 @@ function HomePage() {
                 uname
             })
                 .then(res => {
-                    if (res.data && res.data.status === 'true') {
+                    if (res.data && res.data.status === 'Approved') {
                         setHome((
                             <div>
                                 <section className="h-100 bg-light">
@@ -115,13 +121,13 @@ function HomePage() {
                                                 </ul>
                                                 <div className="nav-item dropdown">
                                                     <a className="nav-link active dropdown-toggle me-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        My Profile
+                                                        {uname}
                                                     </a>
                                                     <ul className="dropdown-menu">
-                                                        <li><a className="dropdown-item" href="#">Account Details </a></li>
-                                                        <li><a className="dropdown-item" href="#">Settings</a></li>
-                                                        <div className="dropdown-divider"></div>
-                                                        <li><a className="dropdown-item" href="#">Logout </a></li>
+                                                        {/* <li><a className="dropdown-item" href="#">Account Details </a></li>
+                                                        <li><a className="dropdown-item" href="#">Settings</a></li> */}
+                                                        {/* <div className="dropdown-divider"></div> */}
+                                                        <li><a className="dropdown-item" onClick={logout}>Logout </a></li>
                                                     </ul>
                                                 </div>
                                                 <form className="d-flex" role="search">
@@ -192,9 +198,9 @@ function HomePage() {
                                 </section>
                             </div>
                         ))
-                    } else if (res.data && res.data.status === 'null') {
+                    } else if (res.data && res.data.status === 'Pending Approval') {
                         showWaitingPage()
-                    } else if (res.data && res.data.status === 'false') {
+                    } else if (res.data && res.data.status === 'Rejected') {
                         showExitPage()
                     }
                 })

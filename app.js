@@ -6,9 +6,6 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 
-console.log(userCollection, orgCollection, publicationCollection);
-
-
 app.get("/", cors(), (req, res) => {
 
 })
@@ -37,6 +34,25 @@ app.post("/", async (req, res) => {
     }
 })
 
+app.post("/getusers", async (req, res) => {
+    try {
+        const check = await userCollection.find({ status: 'Pending Approval' })
+        console.log(check);
+
+        if (check) {
+            res.json(check)
+        }
+        else {
+            await userCollection.insertMany([data])
+            res.json("notexist")
+        }
+    }
+    catch {
+        res.json("Does not exist")
+
+    }
+})
+
 
 app.post("/signup", async (req, res) => {
     const { name, affiliation, affiliation_address, email, contact_no, website, username, password } = req.body
@@ -49,7 +65,7 @@ app.post("/signup", async (req, res) => {
         website: website,
         username: username,
         password: password,
-        status: 'null'
+        status: 'Pending Approval'
     }
 
     try {
@@ -73,13 +89,19 @@ app.post("/signup", async (req, res) => {
 
 app.post("/changeStatus", async (req, res) => {
     const { uname, decision } = req.body
+    console.log(uname, decision);
 
-    //Change status of that uname True/False
+    //Change status to decision of given uname 
     const user = await userCollection.findOneAndUpdate(
-        { username: uname },
+        { name: uname },
         { status: decision },
         { new: true }
-    );
+    ).then(updatedUser => {
+        res.json('Success')
+    }).catch(error => {
+        console.log(error);
+        res.json('Fail')
+    });
 
 })
 

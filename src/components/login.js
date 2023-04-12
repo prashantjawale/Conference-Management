@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import axios from "axios"
 import { useNavigate, Link } from "react-router-dom"
 
@@ -8,6 +8,19 @@ function LoginPage() {
     const [password, setPassword] = useState('')
     const [role, setRole] = useState('user')
 
+    useEffect(() => {
+        if (localStorage.getItem('user')) {
+            history("/home", { state: { name: localStorage.getItem('user') } })
+            return;
+        }
+        if (localStorage.getItem('admin')) {
+            history("/adminhome", { state: { name: localStorage.getItem('user') } })
+            return;
+        }
+
+    })
+    
+
     async function submit(e) {
         e.preventDefault();
 
@@ -16,9 +29,12 @@ function LoginPage() {
                 role, uname, password
             })
                 .then(res => {
-                    if (res.data === "exists") {
+                    if (res.data === "exists" && role === 'user') {
                         localStorage.setItem('user', uname)
                         history("/home", { state: { name: uname, role: role } })
+                    } else if (res.data === "exists") {
+                        localStorage.setItem('admin', uname)
+                        history("/adminhome", { state: { name: uname, role: role } })
                     }
                     else {
                         alert("Invalid Credentials")
@@ -47,7 +63,7 @@ function LoginPage() {
                             <div id="radio" class="padding_bottom_20">
                                 <input type="radio" onClick={(e) => { setRole('user') }} name="source" value="student" id="student" checked />User
                                 <input type="radio" onClick={(e) => { setRole('organiser') }} name="source" value="organiser" id="organiser" />Organiser
-                                <input type="radio" onClick={(e) => { setRole('admin') }} name="source" value="admin" id="admin" />Administrator
+                                {/* <input type="radio" onClick={(e) => { setRole('admin') }} name="source" value="admin" id="admin" />Administrator */}
                             </div>
                             <div class="inputbox">
                                 <span class="inputlabel">Username</span>
