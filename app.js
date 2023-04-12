@@ -37,7 +37,6 @@ app.post("/", async (req, res) => {
 app.post("/getusers", async (req, res) => {
     try {
         const check = await userCollection.find({ status: 'Pending Approval' })
-        console.log(check);
 
         if (check) {
             res.json(check)
@@ -71,7 +70,6 @@ app.post("/signup", async (req, res) => {
     try {
         const check = await userCollection.findOne({ email: email })
         const check2 = await userCollection.findOne({ username: username })
-        console.log(check, check2);
 
         if (check || check2) {
             res.json("exist")
@@ -89,7 +87,6 @@ app.post("/signup", async (req, res) => {
 
 app.post("/changeStatus", async (req, res) => {
     const { uname, decision } = req.body
-    console.log(uname, decision);
 
     //Change status to decision of given uname 
     const user = await userCollection.findOneAndUpdate(
@@ -138,7 +135,6 @@ app.post("/savePaper", async (req, res) => {
                 res.json("exist")
             }
         } else {
-            console.log('here')
             await publicationCollection.insertMany([data])
             res.json("notexist")
         }
