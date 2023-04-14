@@ -202,7 +202,7 @@ const OrganiserTable = () => {
 
 	if (localStorage.getItem('user')) {
 		return user;
-	} else if (localStorage.getItem('user')) {
+	} else if (localStorage.getItem('admin')) {
 		return admin;
 	}
 };
