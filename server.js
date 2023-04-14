@@ -88,8 +88,8 @@ const publicationSchema = new mongoose.Schema({
 		type: String,
 		required: true
 	},
-	draft: {
-		type: Boolean,
+	status: {
+		type: String,
 		required: true
 	}
 })

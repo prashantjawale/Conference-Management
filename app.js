@@ -42,7 +42,6 @@ app.post("/getusers", async (req, res) => {
             res.json(check)
         }
         else {
-            await userCollection.insertMany([data])
             res.json("notexist")
         }
     }
@@ -52,6 +51,22 @@ app.post("/getusers", async (req, res) => {
     }
 })
 
+app.post("/getpapers", async (req, res) => {
+    try {
+        const check = await publicationCollection.find({ user: req.body.user, status: 'Draft' })
+
+        if (check) {
+            res.json(check)
+        }
+        else {
+            res.json("notexist")
+        }
+    }
+    catch {
+        res.json("Does not exist")
+
+    }
+})
 
 app.post("/signup", async (req, res) => {
     const { name, affiliation, affiliation_address, email, contact_no, website, username, password } = req.body
@@ -103,7 +118,7 @@ app.post("/changeStatus", async (req, res) => {
 })
 
 app.post("/savePaper", async (req, res) => {
-    const { uname, title, authors, keywords, abstract, pdf, isSubmit } = req.body
+    const { id, uname, title, authors, keywords, abstract, pdf, submit } = req.body
     const data = {
         user: uname,
         title: title,
@@ -111,29 +126,20 @@ app.post("/savePaper", async (req, res) => {
         keywords: keywords,
         abstract: abstract,
         pdf: pdf,
-        draft: !isSubmit
+        status: submit
     }
 
     try {
-        const check = await publicationCollection.findOne({ user: uname })
+        if (id) {
+            const filter = { _id: id };
 
-        if (check && check.title === title) {
-            if (check.draft === true) {
-                const filter = { user: uname, title: title };
-                const update = {
-                    $set: {
-                        authors: authors,
-                        keywords: keywords,
-                        abstract: abstract,
-                        pdf: pdf,
-                        draft: !isSubmit
-                    }
-                };
-                await publicationCollection.findOneAndUpdate(filter, update);
-                res.json("updated");
-            } else {
-                res.json("exist")
-            }
+            await publicationCollection.findOneAndUpdate(filter, data, { new: true })
+                .then(r => {
+                    res.json("updated");
+                }).catch(error => {
+                    console.log(error);
+                    res.json('Fail')
+                });;
         } else {
             await publicationCollection.insertMany([data])
             res.json("notexist")

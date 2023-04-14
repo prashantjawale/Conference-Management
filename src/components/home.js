@@ -12,26 +12,23 @@ function HomePage() {
         uname = localStorage.getItem('user')
     }
     const [home, setHome] = useState('')
+    const [id, setId] = useState(null)
     const [title, setTitle] = useState('')
     const [authors, setAuthors] = useState('')
     const [keywords, setkeywords] = useState('')
     const [abstract, setAbs] = useState('')
     const pdf = 'fgvbnm';
 
-    async function savePaper(e, isSubmit) {
+    async function savePaper(e, submit) {
         e.preventDefault();
 
         try {
             await axios.post("http://localhost:8000/savePaper", {
-                uname, title, authors, keywords, abstract, pdf, isSubmit
+                id, uname, title, authors, keywords, abstract, pdf, submit
             })
                 .then(res => {
-                    if (res.data === "exists") {
-                        localStorage.setItem('user', uname)
-                    }
-                    else {
-                        alert(res.data)
-                    }
+                    alert(res.data)
+                    history('/savedPapers')
                 })
                 .catch(e => {
                     alert("Wrong details")
@@ -61,7 +58,7 @@ function HomePage() {
                 </div>
                 <div class="waitcontainer">
                     <h1 style={{ fontSize: "36px", marginTop: "200px", marginBottom: "20px" }}>Your user profile has not yet been Approved !</h1>
-                    <p style={{ fontSize: "18px", marginBottom: "40px"}}>We're sorry, but your user profile has not yet been approved. Please contact the organizer for more information.</p>
+                    <p style={{ fontSize: "18px", marginBottom: "40px" }}>We're sorry, but your user profile has not yet been approved. Please contact the organizer for more information.</p>
                 </div>
             </div>
         ))
@@ -79,7 +76,7 @@ function HomePage() {
                 </nav>
                 <div class="waitcontainer">
                     <h1 style={{ fontSize: "36px", marginTop: "200px", marginBottom: "20px" }}>Your user profile has been rejected by the organizer !</h1>
-                    <p style={{ fontSize: "18px", marginBottom: "40px"}}>Please contact the organizer for further information.</p>
+                    <p style={{ fontSize: "18px", marginBottom: "40px" }}>Please contact the organizer for further information.</p>
                 </div>
 
             </div>
@@ -87,7 +84,18 @@ function HomePage() {
     }
 
 
-    useEffect(() => {
+    useEffect(() => {    
+        
+        if (location.state && location.state.paper) {
+            setId(location.state.paper._id)
+            setTitle(location.state.paper.title);
+            setAuthors(location.state.paper.authors);
+            setkeywords(location.state.paper.keywords);
+            setAbs(location.state.paper.abstract);
+
+            location.state = null;
+        }
+
         try {
             axios.post("http://localhost:8000/userDetails", {
                 uname
@@ -99,7 +107,7 @@ function HomePage() {
                                 <section className="h-100 bg-light">
                                     <nav className="navbar navbar-expand-lg p-3 mb-2 bg-success-subtle text-emphasis-success">
                                         <div className="container-fluid">
-                                            <a className="navbar-brand mb-0 h1 d-inline-block align-text-top" href="#"> RESEARCH PAPERS</a>
+                                            <a className="navbar-brand mb-0 h1 d-inline-block align-text-top"> RESEARCH PAPERS</a>
                                             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                                 <span className="navbar-toggler-icon"></span>
                                             </button>
@@ -114,8 +122,8 @@ function HomePage() {
                                                             PAPERS
                                                         </a>
                                                         <ul className="dropdown-menu">
-                                                            <li><a className="dropdown-item" href="#">Upload Paper </a></li>
-                                                            <li><a className="dropdown-item" href="#">Saved Paper</a></li>
+                                                            <li><a className="dropdown-item" href="/uploadPapers">Upload Paper </a></li>
+                                                            <li><a className="dropdown-item" href="/savedPapers">Saved Paper</a></li>
                                                         </ul>
                                                     </li>
                                                 </ul>
@@ -152,23 +160,23 @@ function HomePage() {
                                                                 <p>You can upload your research paper here. Make sure to fill all the relevant details. Press 'Submit' in order to
                                                                     submit the paper for review or use 'Save as draft' to save your paper for later edit. </p>
                                                                 <div className="form-outline mb-4">
-                                                                    <input type="text" onChange={(e) => { setTitle(e.target.value) }} className="form-control form-control-lg" placeholder="Title of your Paper" />
+                                                                    <input type="text" value={title} onChange={(e) => { setTitle(e.target.value) }} className="form-control form-control-lg" placeholder="Title of your Paper" />
                                                                 </div>
                                                                 <div className="row align-items-center py-3">
                                                                     <div className="form-outline mb-4">
-                                                                        <input type="text" onChange={(e) => { setAuthors(e.target.value) }} className="form-control form-control-lg" placeholder="Authors of your Paper" />
+                                                                        <input type="text" value={authors} onChange={(e) => { setAuthors(e.target.value) }} className="form-control form-control-lg" placeholder="Authors of your Paper" />
                                                                     </div>
                                                                 </div>
                                                                 <div className="row align-items-center py-3">
 
                                                                     <div className="form-outline mb-4">
-                                                                        <input type="text" onChange={(e) => { setkeywords(e.target.value) }} className="form-control form-control-lg" placeholder="Keywords" />
+                                                                        <input type="text" value={keywords} onChange={(e) => { setkeywords(e.target.value) }} className="form-control form-control-lg" placeholder="Keywords" />
                                                                     </div>
                                                                 </div>
                                                                 <div className="row align-items-center py-3">
 
                                                                     <div className="form-outline mb-4">
-                                                                        <textarea className="form-control" onChange={(e) => { setAbs(e.target.value) }} rows="3" placeholder="Abstract of your Paper"></textarea>
+                                                                        <textarea className="form-control" value={abstract} onChange={(e) => { setAbs(e.target.value) }} rows="3" placeholder="Abstract of your Paper"></textarea>
                                                                     </div>
                                                                 </div>
                                                                 <hr className="mx-n3" />
@@ -185,8 +193,8 @@ function HomePage() {
                                                                 </div>
                                                                 <hr className="mx-n3" />
                                                                 <div className="d-flex justify-content-end pt-3">
-                                                                    <button type="button" onClick={(e) => { savePaper(e, false) }} className="btn btn-light btn-lg">Save as Draft</button>
-                                                                    <button type="button" onClick={(e) => { savePaper(e, true) }} className="btn btn-success btn-lg ms-2">Submit</button>
+                                                                    <button type="button" onClick={(e) => { savePaper(e, 'Draft') }} className="btn btn-light btn-lg">Save as Draft</button>
+                                                                    <button type="button" onClick={(e) => { savePaper(e, 'Submit') }} className="btn btn-success btn-lg ms-2">Submit</button>
                                                                 </div>
                                                             </div>
                                                         </div>
