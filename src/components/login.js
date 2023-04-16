@@ -51,8 +51,8 @@ function LoginPage() {
         }
     }
     const login = (
-        <div className="loginbg">
-            <div class="limiter margin_top_30">
+        <div className="loginbg" style={ {padding: '50px'} }>
+            <div class="limiter">
                 <div class="container-login">
                     <div class="wrap-login100">
                         <form class="login100-form font_family_poppins" action="POST">
@@ -61,8 +61,8 @@ function LoginPage() {
                             </span>
                             <br />
                             <div id="radio" class="padding_bottom_20">
-                                <input type="radio" onClick={(e) => { setRole('user') }} name="source" value="student" id="student" checked />User
-                                <input type="radio" onClick={(e) => { setRole('organiser') }} name="source" value="organiser" id="organiser" />Organiser
+                                <input style={ {marginLeft: '10px', marginRight: '5px'} } type="radio" onClick={(e) => { setRole('user') }} name="source" value="student" id="student" checked />User
+                                <input style={ {marginLeft: '10px', marginRight: '5px'} } type="radio" onClick={(e) => { setRole('organiser') }} name="source" value="organiser" id="organiser" />Organiser
                                 {/* <input type="radio" onClick={(e) => { setRole('admin') }} name="source" value="admin" id="admin" />Administrator */}
                             </div>
                             <div class="inputbox">

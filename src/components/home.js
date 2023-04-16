@@ -17,7 +17,7 @@ function HomePage() {
     const [authors, setAuthors] = useState('')
     const [keywords, setkeywords] = useState('')
     const [abstract, setAbs] = useState('')
-    const pdf = 'fgvbnm';
+    const [pdf, setPdf] = useState('')
 
     async function savePaper(e, submit) {
         e.preventDefault();
@@ -84,14 +84,15 @@ function HomePage() {
     }
 
 
-    useEffect(() => {    
-        
+    useEffect(() => {
+
         if (location.state && location.state.paper) {
             setId(location.state.paper._id)
             setTitle(location.state.paper.title);
             setAuthors(location.state.paper.authors);
             setkeywords(location.state.paper.keywords);
             setAbs(location.state.paper.abstract);
+            setPdf(location.state.paper.pdf);
 
             location.state = null;
         }
@@ -179,7 +180,10 @@ function HomePage() {
                                                                         <textarea className="form-control" value={abstract} onChange={(e) => { setAbs(e.target.value) }} rows="3" placeholder="Abstract of your Paper"></textarea>
                                                                     </div>
                                                                 </div>
-                                                                <hr className="mx-n3" />
+                                                                <div className="form-outline mb-4">
+                                                                    <input type="text" value={pdf} onChange={(e) => { setPdf(e.target.value) }} className="form-control form-control-lg" placeholder="Link of your Paper" />
+                                                                </div>
+                                                                {/* <hr className="mx-n3" />
                                                                 <div className="row align-items-center py-3">
                                                                     <div className="col-md-3 ps-5">
                                                                         <h6 className="mb-0">Upload Paper</h6>
@@ -190,7 +194,7 @@ function HomePage() {
                                                                             size 50 MB
                                                                         </div>
                                                                     </div>
-                                                                </div>
+                                                                </div> */}
                                                                 <hr className="mx-n3" />
                                                                 <div className="d-flex justify-content-end pt-3">
                                                                     <button type="button" onClick={(e) => { savePaper(e, 'Draft') }} className="btn btn-light btn-lg">Save as Draft</button>

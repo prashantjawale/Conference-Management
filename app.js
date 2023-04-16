@@ -53,7 +53,7 @@ app.post("/getusers", async (req, res) => {
 
 app.post("/getpapers", async (req, res) => {
     try {
-        const check = await publicationCollection.find({ user: req.body.user, status: 'Draft' })
+        const check = await publicationCollection.find({ user: req.body.user})
 
         if (check) {
             res.json(check)

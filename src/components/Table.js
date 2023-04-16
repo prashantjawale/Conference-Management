@@ -27,8 +27,11 @@ const OrganiserTable = () => {
 		}
 	}, [uname, papers]);
 
-	function showDetails(user) {
-		history("/details", { state: { user: user } })
+	function showDetails(data, mode) {
+		if (mode === 'user')
+			history("/details", { state: { user: data } })
+		else
+			history("/details", { state: { paper: data } })
 	}
 
 	function editPaper(paper) {
@@ -36,9 +39,9 @@ const OrganiserTable = () => {
 	}
 
 	function logout() {
-        localStorage.removeItem('user');
-        history("/login")
-    }
+		localStorage.removeItem('user');
+		history("/login")
+	}
 
 	async function handleDecision(uname, decision) {
 
@@ -99,7 +102,7 @@ const OrganiserTable = () => {
 														)}
 													</td>
 													<td>
-														<div onClick={() => showDetails(user)}>
+														<div onClick={() => showDetails(user, 'user')}>
 															<Button variant='warning'>Details</Button>
 														</div>
 													</td>
@@ -130,7 +133,7 @@ const OrganiserTable = () => {
 							<ul className="navbar-nav me-auto mb-2 mb-lg-0">
 
 								<li className="nav-item">
-									<a className="nav-link active" aria-current="page" href="#">HOME</a>
+									<a className="nav-link active" aria-current="page" href="/savedPapers">HOME</a>
 								</li>
 								<li className="nav-item dropdown">
 									<a className="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -173,6 +176,7 @@ const OrganiserTable = () => {
 												<th>Authors</th>
 												<th>Keywords</th>
 												<th>Action</th>
+												<th>USER DETAILS</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -183,8 +187,20 @@ const OrganiserTable = () => {
 													<td>{paper.keywords}</td>
 
 													<td>
-														<div onClick={() => editPaper(paper)}>
-															<Button variant='warning'>Edit</Button>
+														{paper.status === "Draft" && (
+															<div onClick={() => editPaper(paper)}>
+																<Button variant='warning'>Edit</Button>
+															</div>
+														)}
+														{paper.status === "Submit" && (
+															<div>
+																<div variant='Success'>Submited</div>
+															</div>
+														)}
+													</td>
+													<td>
+														<div onClick={() => showDetails(paper, 'paper')}>
+															<Button variant='success'>Details</Button>
 														</div>
 													</td>
 												</tr>

@@ -84,7 +84,7 @@ function SignupPage() {
     }
 
     const signup = (
-        <div class="loginbg limiter margin_top_30">
+        <div class="loginbg limiter" style={ {padding: '10px'} }>
             <div class="container-login">
                 <div class="wrap-login100">
                     <form class="login100-form font_family_poppins" action="POST">
