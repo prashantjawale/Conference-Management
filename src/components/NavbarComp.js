@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, Link, useLocation } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import {
 	MDBNavbar,
 	MDBContainer,
@@ -18,7 +18,6 @@ import {
 
 export default function NavbarComp() {
 
-	const location = useLocation()
 	const history = useNavigate();
 	const [showNavColorThird, setShowNavColorThird] = useState(false);
 

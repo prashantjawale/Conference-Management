@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import axios from "axios";
 import NavbarComp from './NavbarComp';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const OrganiserTable = () => {
 	const [users, setUsers] = useState([]);
