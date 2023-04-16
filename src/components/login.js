@@ -19,7 +19,7 @@ function LoginPage() {
         }
 
     })
-    
+
 
     async function submit(e) {
         e.preventDefault();
@@ -51,7 +51,7 @@ function LoginPage() {
         }
     }
     const login = (
-        <div className="loginbg" style={ {padding: '50px'} }>
+        <div className="loginbg" style={{ padding: '50px' }}>
             <div class="limiter">
                 <div class="container-login">
                     <div class="wrap-login100">
@@ -61,8 +61,8 @@ function LoginPage() {
                             </span>
                             <br />
                             <div id="radio" class="padding_bottom_20">
-                                <input style={ {marginLeft: '10px', marginRight: '5px'} } type="radio" onClick={(e) => { setRole('user') }} name="source" value="student" id="student" checked />User
-                                <input style={ {marginLeft: '10px', marginRight: '5px'} } type="radio" onClick={(e) => { setRole('organiser') }} name="source" value="organiser" id="organiser" />Organiser
+                                <input style={{ marginLeft: '10px', marginRight: '5px' }} type="radio" onClick={(e) => { setRole('user') }} name="role" value="user" id="user" checked={role === "user"} />User
+                                <input style={{ marginLeft: '10px', marginRight: '5px' }} type="radio" onClick={(e) => { setRole('organiser') }} name="role" value="organiser" id="organiser" checked={role === "organiser"} />Organiser
                                 {/* <input type="radio" onClick={(e) => { setRole('admin') }} name="source" value="admin" id="admin" />Administrator */}
                             </div>
                             <div class="inputbox">
