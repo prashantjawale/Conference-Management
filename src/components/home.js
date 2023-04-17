@@ -116,7 +116,7 @@ function HomePage() {
                                                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
 
                                                     <li className="nav-item">
-                                                        <a className="nav-link active" aria-current="page" href="#">HOME</a>
+                                                        <a className="nav-link active" aria-current="page" href="/savedPapers">HOME</a>
                                                     </li>
                                                     <li className="nav-item dropdown">
                                                         <a className="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -161,27 +161,27 @@ function HomePage() {
                                                                 <p>You can upload your research paper here. Make sure to fill all the relevant details. Press 'Submit' in order to
                                                                     submit the paper for review or use 'Save as draft' to save your paper for later edit. </p>
                                                                 <div className="form-outline mb-4">
-                                                                    <input type="text" value={title} onChange={(e) => { setTitle(e.target.value) }} className="form-control form-control-lg" placeholder="Title of your Paper" />
+                                                                    <input type="text" defaultValue={title} onChange={(e) => { setTitle(e.target.value) }} className="form-control form-control-lg" placeholder="Title of your Paper" />
                                                                 </div>
                                                                 <div className="row align-items-center py-3">
                                                                     <div className="form-outline mb-4">
-                                                                        <input type="text" value={authors} onChange={(e) => { setAuthors(e.target.value) }} className="form-control form-control-lg" placeholder="Authors of your Paper" />
+                                                                        <input type="text" defaultValue={authors} onChange={(e) => { setAuthors(e.target.value) }} className="form-control form-control-lg" placeholder="Authors of your Paper" />
                                                                     </div>
                                                                 </div>
                                                                 <div className="row align-items-center py-3">
 
                                                                     <div className="form-outline mb-4">
-                                                                        <input type="text" value={keywords} onChange={(e) => { setkeywords(e.target.value) }} className="form-control form-control-lg" placeholder="Keywords" />
+                                                                        <input type="text" defaultValue={keywords} onChange={(e) => { setkeywords(e.target.value) }} className="form-control form-control-lg" placeholder="Keywords" />
                                                                     </div>
                                                                 </div>
                                                                 <div className="row align-items-center py-3">
 
                                                                     <div className="form-outline mb-4">
-                                                                        <textarea className="form-control" value={abstract} onChange={(e) => { setAbs(e.target.value) }} rows="3" placeholder="Abstract of your Paper"></textarea>
+                                                                        <textarea className="form-control" defaultValue={abstract} onChange={(e) => { setAbs(e.target.value) }} rows="3" placeholder="Abstract of your Paper"></textarea>
                                                                     </div>
                                                                 </div>
                                                                 <div className="form-outline mb-4">
-                                                                    <input type="text" value={pdf} onChange={(e) => { setPdf(e.target.value) }} className="form-control form-control-lg" placeholder="Link of your Paper" />
+                                                                    <input type="text" defaultValue={pdf} onChange={(e) => { setPdf(e.target.value) }} className="form-control form-control-lg" placeholder="Link of your Paper" />
                                                                 </div>
                                                                 {/* <hr className="mx-n3" />
                                                                 <div className="row align-items-center py-3">
