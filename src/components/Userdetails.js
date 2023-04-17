@@ -35,11 +35,20 @@ const UserDetails = () => {
 					<div className="col-md-6">
 						<div className="card shadow p-3 mb-5 bg-white rounded">
 							<div className="text-center">
-								<img
-									src='https://via.placeholder.com/150'
-									alt="user icon"
-									className="rounded-circle img-thumbnail"
-								/>
+								{user.image ?
+									<img
+										style={{width: '25vw', height: '25vw'}}
+										src={user.image}
+										alt="user icon"
+										className="rounded-circle img-thumbnail"
+									/>
+									:
+									<img
+										src='https://via.placeholder.com/150'
+										alt="user icon"
+										className="rounded-circle img-thumbnail"
+									/>
+								}
 								<h4 className="my-3">{user.name}</h4>
 							</div>
 							<p className="my-3">

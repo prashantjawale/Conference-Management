@@ -69,7 +69,7 @@ app.post("/getpapers", async (req, res) => {
 })
 
 app.post("/signup", async (req, res) => {
-    const { name, affiliation, affiliation_address, email, contact_no, website, username, password } = req.body
+    const { name, affiliation, affiliation_address, email, contact_no, website, image, username, password } = req.body
     const data = {
         name: name,
         affiliation: affiliation,
@@ -77,6 +77,7 @@ app.post("/signup", async (req, res) => {
         email: email,
         contact_no: contact_no,
         website: website,
+        image: image,
         username: username,
         password: password,
         status: 'Pending Approval'

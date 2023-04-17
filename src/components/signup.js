@@ -11,6 +11,7 @@ function SignupPage() {
     const [email, setEmail] = useState('')
     const [contact_no, setContact] = useState('')
     const [website, setLink] = useState('')
+    const [image, setImage] = useState('')
     const [username, setUname] = useState('')
     const [password, setPassword] = useState('')
 
@@ -62,7 +63,7 @@ function SignupPage() {
         }
         try {
             await axios.post("http://localhost:8000/signup", {
-                name, affiliation, affiliation_address, email, contact_no, website, username, password
+                name, affiliation, affiliation_address, email, contact_no, website, image, username, password
             })
                 .then(res => {
                     if (res.data === "exist") {
@@ -137,6 +138,14 @@ function SignupPage() {
                             <div class="incon">
                                 <i class="fa fa-link icon"></i>
                                 <input class="inputarea" type="text" onChange={(e) => { setLink(e.target.value) }} name="website" placeholder="Type your website" />
+                            </div>
+                        </div>
+                        <br />
+                        <div class="inputbox">
+                            <span class="inputlabel">Profile Image</span>
+                            <div class="incon">
+                                <i class="fa fa-link icon"></i>
+                                <input class="inputarea" type="text" onChange={(e) => { setImage(e.target.value) }} name="image" placeholder="Enter link to profile picture" />
                             </div>
                         </div>
                         <br />
